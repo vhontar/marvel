@@ -9,5 +9,5 @@ data object HomeDestination
 data class CharacterDetailsDestination(val characterId: Int)
 
 @Serializable
-data class ComicDetailsScreen(val id: Int)
+data class ComicDetailsDestination(val comicId: Int)
 

@@ -25,13 +25,13 @@ val dataModule = module {
     single<MarvelCharactersService> { provideMarvelService() }
     single<MarvelComicsService> { provideMarvelService() }
 
-    single<MarvelCharactersRepository> { MarvelCharactersRepositoryImpl(get(), get()) }
-    single<MarvelComicsRepository> { MarvelComicsRepositoryImpl(get(), get()) }
+    single<MarvelCharactersRepository> { MarvelCharactersRepositoryImpl(get()) }
+    single<MarvelComicsRepository> { MarvelComicsRepositoryImpl(get()) }
 }
 
 private fun provideMarvelService() = MarvelService(
-    baseUrl = "",
-    publicToken = "",
+    baseUrl = "", // TODO temporary
+    publicToken = "", // TODO temporary
     privateToken = "",
     logging = { Logger.logDebug { it } },
 )

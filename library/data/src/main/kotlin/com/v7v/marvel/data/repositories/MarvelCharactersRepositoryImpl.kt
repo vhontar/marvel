@@ -1,13 +1,11 @@
 package com.v7v.marvel.data.repositories
 
-import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.map
 import com.v7v.marvel.data.local.dao.CharacterDao
 import com.v7v.marvel.data.local.entities.CharacterEntity
-import com.v7v.marvel.data.paging.CharacterRemoteMediator
+import com.v7v.marvel.data.paging.CharacterPagingSource
 import com.v7v.marvel.data.remote.MarvelCharactersService
 import com.v7v.marvel.data.remote.models.ApiCharacterResponse
 import com.v7v.marvel.data.remote.result.map
@@ -19,14 +17,11 @@ import com.v7v.marvel.domain.toSuccess
 import com.v7v.marvel.logger.logError
 import com.v7v.marvel.logger.logWarn
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 
 internal class MarvelCharactersRepositoryImpl(
     private val service: MarvelCharactersService,
-    private val dao: CharacterDao,
 ) : MarvelCharactersRepository {
 
-    @OptIn(ExperimentalPagingApi::class)
     override suspend fun getCharactersPaged(
         nameStartsWith: String?,
     ): Flow<PagingData<Character>> = Pager(
@@ -34,11 +29,8 @@ internal class MarvelCharactersRepositoryImpl(
             pageSize = 20,
             enablePlaceholders = false,
         ),
-        remoteMediator = CharacterRemoteMediator(service, dao, nameStartsWith),
-        pagingSourceFactory = { dao.getAllCharactersPaged(nameStartsWith) }
-    ).flow.map { pagingData ->
-        pagingData.map { it.toCharacter() }
-    }
+        pagingSourceFactory = { CharacterPagingSource(service, nameStartsWith) },
+    ).flow
 
     override suspend fun getCharacter(characterId: Int): Result<Character, Error> =
         service.fetchCharacter(characterId).map(
@@ -70,11 +62,4 @@ internal fun ApiCharacterResponse.toCharacter() = Character(
     name = name,
     thumbnailUrl = "${thumbnail.path}.${thumbnail.extension}",
     comics = comics.items.map { Character.Comic(it.name) },
-)
-
-internal fun CharacterEntity.toCharacter() = Character(
-    id = id,
-    name = name,
-    thumbnailUrl = thumbnailUrl,
-    comics = listOf(), // TODO new model for character details page
 )

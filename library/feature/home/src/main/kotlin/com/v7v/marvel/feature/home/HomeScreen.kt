@@ -46,6 +46,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -62,8 +63,8 @@ fun HomeScreen(
 ) {
     val comics = viewModel.comicsPagedFlow.collectAsLazyPagingItems()
     val characters = viewModel.charactersPagedFlow.collectAsLazyPagingItems()
+    val selectedTabIndex = viewModel.currentTabIndex.collectAsStateWithLifecycle(0)
 
-    var selectedTabIndex by remember { mutableIntStateOf(0) }
     val tabs = listOf(stringResource(R.string.comics_tab), stringResource(R.string.characters_tab))
 
     Scaffold(
@@ -76,11 +77,11 @@ fun HomeScreen(
                     painter = painterResource(R.drawable.images),
                     contentDescription = "Marvel",
                 )
-                TabRow(selectedTabIndex = selectedTabIndex) {
+                TabRow(selectedTabIndex = selectedTabIndex.value) {
                     tabs.forEachIndexed { index, title ->
                         Tab(
-                            selected = selectedTabIndex == index,
-                            onClick = { selectedTabIndex = index },
+                            selected = selectedTabIndex.value == index,
+                            onClick = { viewModel.changeCurrentTabIndex(index) },
                             text = { Text(text = title) }
                         )
                     }
@@ -88,7 +89,7 @@ fun HomeScreen(
             }
         },
         content = { paddingValues ->
-            when (selectedTabIndex) {
+            when (selectedTabIndex.value) {
                 0 -> TabContent(
                     items = comics,
                     modifier = Modifier.padding(paddingValues),

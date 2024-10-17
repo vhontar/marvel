@@ -8,6 +8,7 @@ dependencies {
     implementation(project(":navigation"))
     implementation(project(":feature:home"))
     implementation(project(":feature:character-details"))
+    implementation(project(":feature:comic-details"))
 
     implementation(libs.koin)
     implementation(platform(libs.androidx.compose.bom))

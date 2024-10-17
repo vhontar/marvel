@@ -3,6 +3,7 @@ package com.v7v.marvel.core
 import android.app.Application
 import com.v7v.marvel.data.dataModule
 import com.v7v.marvel.feature.character.details.characterDetailsViewModelModule
+import com.v7v.marvel.feature.comic.details.comicDetailsViewModelModule
 import com.v7v.marvel.feature.home.homeViewModelModule
 import com.v7v.marvel.logger.Logger
 import com.v7v.marvel.logger.Severity
@@ -42,6 +43,7 @@ object AppApplication {
                 dataModule,
                 homeViewModelModule,
                 characterDetailsViewModelModule,
+                comicDetailsViewModelModule,
             )
         }
     }

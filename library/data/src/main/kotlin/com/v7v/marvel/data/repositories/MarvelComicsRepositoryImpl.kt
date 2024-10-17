@@ -1,13 +1,10 @@
 package com.v7v.marvel.data.repositories
 
-import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.map
 import com.v7v.marvel.data.local.dao.ComicDao
-import com.v7v.marvel.data.local.entities.ComicEntity
-import com.v7v.marvel.data.paging.ComicRemoteMediator
+import com.v7v.marvel.data.paging.ComicPagingSource
 import com.v7v.marvel.data.remote.MarvelComicsService
 import com.v7v.marvel.data.remote.models.ApiComicResponse
 import com.v7v.marvel.data.remote.result.map
@@ -19,14 +16,11 @@ import com.v7v.marvel.domain.toSuccess
 import com.v7v.marvel.logger.logError
 import com.v7v.marvel.logger.logWarn
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 
 internal class MarvelComicsRepositoryImpl(
     private val service: MarvelComicsService,
-    private val dao: ComicDao,
 ) : MarvelComicsRepository {
 
-    @OptIn(ExperimentalPagingApi::class)
     override suspend fun getComicsPaged(
         titleStartsWith: String?,
     ): Flow<PagingData<Comic>> = Pager(
@@ -34,11 +28,8 @@ internal class MarvelComicsRepositoryImpl(
             pageSize = 20,
             enablePlaceholders = false,
         ),
-        remoteMediator = ComicRemoteMediator(service, dao, titleStartsWith),
-        pagingSourceFactory = { dao.getAllComicsPaged(titleStartsWith) }
-    ).flow.map { pagingData ->
-        pagingData.map { it.toComic() }
-    }
+        pagingSourceFactory = { ComicPagingSource(service, titleStartsWith) }
+    ).flow
 
     override suspend fun getComic(comicId: Int): Result<Comic, Error> =
         service.fetchComic(comicId).map(
@@ -69,10 +60,5 @@ internal fun ApiComicResponse.toComic() = Comic(
     id = id,
     title = title,
     thumbnailUrl = "${thumbnail.path}.${thumbnail.extension}",
-)
-
-internal fun ComicEntity.toComic() = Comic(
-    id = id,
-    title = title,
-    thumbnailUrl = thumbnailUrl,
+    characters = characters.items.map { Comic.Character(it.name) },
 )

@@ -19,9 +19,11 @@ import org.koin.dsl.module
 abstract class HomeViewModel : ViewModel() {
     abstract val charactersPagedFlow: Flow<PagingData<Character>>
     abstract val comicsPagedFlow: Flow<PagingData<Comic>>
+    abstract val currentTabIndex: Flow<Int>
 
     abstract fun searchCharactersByName(name: String)
     abstract fun searchComicsByTitle(title: String)
+    abstract fun changeCurrentTabIndex(idx: Int)
 }
 
 val homeViewModelModule = module {
@@ -36,6 +38,9 @@ internal class DefaultHomeViewModel(
 
     private val mutableNameStartsWith = MutableStateFlow<String?>(null)
     private val mutableTitleStartsWith = MutableStateFlow<String?>(null)
+    private val mutableCurrentTabIndex = MutableStateFlow(0)
+
+    override val currentTabIndex: Flow<Int> = mutableCurrentTabIndex
 
     override val charactersPagedFlow: Flow<PagingData<Character>> =
         mutableNameStartsWith.flatMapLatest { query ->
@@ -56,6 +61,12 @@ internal class DefaultHomeViewModel(
     override fun searchComicsByTitle(title: String) {
         viewModelScope.launch {
             mutableTitleStartsWith.emit(title)
+        }
+    }
+
+    override fun changeCurrentTabIndex(idx: Int) {
+        viewModelScope.launch {
+            mutableCurrentTabIndex.emit(idx)
         }
     }
 }

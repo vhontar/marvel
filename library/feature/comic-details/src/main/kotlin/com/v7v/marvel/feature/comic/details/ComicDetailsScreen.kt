@@ -1,9 +1,7 @@
-package com.v7v.marvel.feature.character.details
+package com.v7v.marvel.feature.comic.details
 
 
 import android.content.Intent
-import android.graphics.Bitmap
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,11 +19,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,22 +27,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.palette.graphics.Palette
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.v7v.feature.character.details.R
-import com.v7v.marvel.domain.models.Character
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.v7v.feature.comic.details.R
+import com.v7v.marvel.domain.models.Comic
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun CharacterDetailsScreen(
-    characterId: Int,
-    viewModel: CharacterDetailsViewModel = koinViewModel(),
+fun ComicDetailsScreen(
+    comicId: Int,
+    viewModel: ComicDetailsViewModel = koinViewModel(),
     onBackPressed: () -> Unit,
 ) {
     val context = LocalContext.current
@@ -69,13 +57,13 @@ fun CharacterDetailsScreen(
             contentAlignment = Alignment.Center
         ) { CircularProgressIndicator() }
 
-        is State.Success -> CharacterDetailsContent(
-            character = result.character,
+        is State.Success -> ComicDetailsContent(
+            comic = result.comic,
             onBackPressed = onBackPressed,
             onFavoriteClick = { TODO() },
-            onShareClick = { character ->
+            onShareClick = { comic ->
                 val sendIntent = Intent(Intent.ACTION_SEND).apply {
-                    putExtra(Intent.EXTRA_TEXT, character.name)
+                    putExtra(Intent.EXTRA_TEXT, comic.title)
                     type = "text/plain"
                 }
                 val shareIntent = Intent.createChooser(sendIntent, null)
@@ -84,15 +72,15 @@ fun CharacterDetailsScreen(
         )
     }
 
-    LaunchedEffect(Unit) { viewModel.load(characterId) }
+    LaunchedEffect(Unit) { viewModel.load(comicId) }
 }
 
 @Composable
-fun CharacterDetailsContent(
-    character: Character,
+fun ComicDetailsContent(
+    comic: Comic,
     onBackPressed: () -> Unit,
     onFavoriteClick: () -> Unit,
-    onShareClick: (Character) -> Unit,
+    onShareClick: (Comic) -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxSize()
@@ -104,7 +92,7 @@ fun CharacterDetailsContent(
         ) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(character.thumbnailUrl)
+                    .data(comic.thumbnailUrl)
                     .build(),
                 contentDescription = "Character Image",
                 placeholder = painterResource(R.drawable.placeholder),
@@ -137,7 +125,7 @@ fun CharacterDetailsContent(
                             tint = Color.White,
                         )
                     }
-                    IconButton(onClick = { onShareClick(character) }) {
+                    IconButton(onClick = { onShareClick(comic) }) {
                         Icon(
                             modifier = Modifier.size(24.dp),
                             painter = painterResource(id = R.drawable.ic_share),
@@ -150,7 +138,7 @@ fun CharacterDetailsContent(
         }
 
         Text(
-            text = character.name,
+            text = comic.title,
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier
                 .fillMaxWidth()
@@ -164,21 +152,21 @@ fun CharacterDetailsContent(
         ) {
             item {
                 Text(
-                    text = "Comics",
+                    text = "Characters",
                     style = MaterialTheme.typography.headlineSmall,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
             }
-            items(character.comics.size) { index ->
-                val comic = character.comics[index]
-                ComicListItem(comic = comic)
+            items(comic.characters.size) { index ->
+                val character = comic.characters[index]
+                CharacterListItem(character = character)
             }
         }
     }
 }
 
 @Composable
-fun ComicListItem(comic: Character.Comic) {
+fun CharacterListItem(character: Comic.Character) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -187,7 +175,7 @@ fun ComicListItem(comic: Character.Comic) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = comic.name,
+            text = character.name,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.weight(1f)
         )
@@ -196,10 +184,10 @@ fun ComicListItem(comic: Character.Comic) {
 
 @Preview
 @Composable
-private fun CharacterDetailsPreview() {
-    CharacterDetailsScreen(
-        characterId = 1,
-        viewModel = MockCharacterDetailsViewModel(),
+private fun ComicDetailsPreview() {
+    ComicDetailsScreen(
+        comicId = 1,
+        viewModel = MockComicDetailsViewModel(),
         onBackPressed = {},
     )
 }

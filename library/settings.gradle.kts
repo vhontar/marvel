@@ -26,6 +26,7 @@ include(
     ":core",
     ":navigation",
     ":feature:home",
-    ":feature:character-details"
+    ":feature:character-details",
+    ":feature:comic-details"
 )
 includeBuild("../gradle-plugins-tooling")

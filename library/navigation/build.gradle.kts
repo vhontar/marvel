@@ -6,6 +6,8 @@ plugins {
 dependencies {
     implementation(project(":feature:home"))
     implementation(project(":feature:character-details"))
+    implementation(project(":feature:comic-details"))
+
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.navigation)

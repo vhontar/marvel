@@ -39,24 +39,32 @@ internal class MockHomeViewModel : HomeViewModel() {
                     id = 1,
                     title = "Mock Comic 1",
                     thumbnailUrl = "https://example.com/mock1.jpg",
+                    characters = listOf(),
                 ),
                 Comic(
                     id = 2,
                     title = "Mock Comic 2",
                     thumbnailUrl = "https://example.com/mock2.jpg",
+                    characters = listOf(),
                 ),
                 Comic(
                     id = 3,
                     title = "Mock Comic 3",
                     thumbnailUrl = "https://example.com/mock3.jpg",
+                    characters = listOf(),
                 )
             )
         )
     )
 
+    override val currentTabIndex: Flow<Int> = flowOf(0)
+
     override fun searchComicsByTitle(title: String) {
     }
 
     override fun searchCharactersByName(name: String) {
+    }
+
+    override fun changeCurrentTabIndex(idx: Int) {
     }
 }
