@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/gradle-plugins-tooling" name="gradle-plugins-tooling">
+                <projects>
+                  <project path="$PROJECT_DIR$/gradle-plugins-tooling" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/library" name="library">
+                <projects>
+                  <project path="$PROJECT_DIR$/library" />
+                  <project path="$PROJECT_DIR$/library/core" />
+                  <project path="$PROJECT_DIR$/library/data" />
+                  <project path="$PROJECT_DIR$/library/domain" />
+                  <project path="$PROJECT_DIR$/library/feature" />
+                  <project path="$PROJECT_DIR$/library/feature/character-details" />
+                  <project path="$PROJECT_DIR$/library/feature/home" />
+                  <project path="$PROJECT_DIR$/library/logger" />
+                  <project path="$PROJECT_DIR$/library/navigation" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="jbr-17" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/gradle-plugins-tooling" />
+            <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/library/core" />
+            <option value="$PROJECT_DIR$/library/data" />
+            <option value="$PROJECT_DIR$/library/domain" />
+            <option value="$PROJECT_DIR$/library/feature" />
+            <option value="$PROJECT_DIR$/library/feature/character-details" />
+            <option value="$PROJECT_DIR$/library/feature/home" />
+            <option value="$PROJECT_DIR$/library/logger" />
+            <option value="$PROJECT_DIR$/library/navigation" />
+          </set>
+        </option>
+        <option name="resolveExternalAnnotations" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

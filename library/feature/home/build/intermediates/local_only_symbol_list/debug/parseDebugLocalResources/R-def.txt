@@ -1,0 +1,9 @@
+R_DEF: Internal format may change without notice
+local
+drawable images
+drawable placeholder
+string characters_tab
+string comics_tab
+string error_loading_comics
+string search_characters_title
+string search_comics_title

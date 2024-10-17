@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="characters_tab">Characters</string>
+    <string name="comics_tab">Comics</string>
+    <string name="error_loading_comics">Something went wrong. Try again!</string>
+    <string name="search_characters_title">Search characters</string>
+    <string name="search_comics_title">Search comics</string>
+</resources>

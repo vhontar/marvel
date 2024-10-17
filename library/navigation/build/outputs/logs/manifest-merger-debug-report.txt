@@ -1,0 +1,16 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/vladyslavhontar/AndroidStudioProjects/Marvel/library/navigation/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest1117075695048425536.xml:2:13-83
+INJECTED from /Users/vladyslavhontar/AndroidStudioProjects/Marvel/library/navigation/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest1117075695048425536.xml:2:13-83
+	package
+		INJECTED from /Users/vladyslavhontar/AndroidStudioProjects/Marvel/library/navigation/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest1117075695048425536.xml
+	xmlns:android
+		ADDED from /Users/vladyslavhontar/AndroidStudioProjects/Marvel/library/navigation/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest1117075695048425536.xml:2:23-81
+uses-sdk
+INJECTED from /Users/vladyslavhontar/AndroidStudioProjects/Marvel/library/navigation/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest1117075695048425536.xml reason: use-sdk injection requested
+INJECTED from /Users/vladyslavhontar/AndroidStudioProjects/Marvel/library/navigation/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest1117075695048425536.xml
+INJECTED from /Users/vladyslavhontar/AndroidStudioProjects/Marvel/library/navigation/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest1117075695048425536.xml
+	android:targetSdkVersion
+		INJECTED from /Users/vladyslavhontar/AndroidStudioProjects/Marvel/library/navigation/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest1117075695048425536.xml
+	android:minSdkVersion
+		INJECTED from /Users/vladyslavhontar/AndroidStudioProjects/Marvel/library/navigation/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest1117075695048425536.xml

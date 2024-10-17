@@ -1,0 +1,6 @@
+com.v7v.feature.character.details
+drawable baseline_arrow_back_24
+drawable baseline_arrow_forward_ios_24
+drawable ic_favorite
+drawable ic_share
+drawable placeholder
