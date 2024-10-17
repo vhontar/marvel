@@ -4,7 +4,7 @@ import com.android.build.api.dsl.ApplicationExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class AndroidApplicationPlugin : Plugin<Project> {
+internal class AndroidApplicationPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         pluginManager.apply("com.android.application")
         setupKotlin()

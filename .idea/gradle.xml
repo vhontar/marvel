@@ -20,6 +20,7 @@
                   <project path="$PROJECT_DIR$/library/domain" />
                   <project path="$PROJECT_DIR$/library/feature" />
                   <project path="$PROJECT_DIR$/library/feature/character-details" />
+                  <project path="$PROJECT_DIR$/library/feature/comic-details" />
                   <project path="$PROJECT_DIR$/library/feature/home" />
                   <project path="$PROJECT_DIR$/library/logger" />
                   <project path="$PROJECT_DIR$/library/navigation" />
@@ -42,6 +43,7 @@
             <option value="$PROJECT_DIR$/library/domain" />
             <option value="$PROJECT_DIR$/library/feature" />
             <option value="$PROJECT_DIR$/library/feature/character-details" />
+            <option value="$PROJECT_DIR$/library/feature/comic-details" />
             <option value="$PROJECT_DIR$/library/feature/home" />
             <option value="$PROJECT_DIR$/library/logger" />
             <option value="$PROJECT_DIR$/library/navigation" />

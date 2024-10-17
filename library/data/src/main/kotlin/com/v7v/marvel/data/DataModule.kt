@@ -2,6 +2,7 @@ package com.v7v.marvel.data
 
 import android.content.Context
 import androidx.room.Room
+import com.v7v.data.BuildConfig
 import com.v7v.marvel.data.local.MarvelDatabase
 import com.v7v.marvel.data.local.dao.CharacterDao
 import com.v7v.marvel.data.local.dao.ComicDao
@@ -14,7 +15,6 @@ import com.v7v.marvel.domain.repositories.MarvelCharactersRepository
 import com.v7v.marvel.domain.repositories.MarvelComicsRepository
 import com.v7v.marvel.logger.Logger
 import com.v7v.marvel.logger.logDebug
-import org.koin.core.scope.Scope
 import org.koin.dsl.module
 
 val dataModule = module {
@@ -30,9 +30,9 @@ val dataModule = module {
 }
 
 private fun provideMarvelService() = MarvelService(
-    baseUrl = "", // TODO temporary
-    publicToken = "", // TODO temporary
-    privateToken = "",
+    baseUrl = BuildConfig.BASE_URL,
+    publicToken = BuildConfig.PUBLIC_API_KEY,
+    privateToken = BuildConfig.PRIVATE_API_KEY,
     logging = { Logger.logDebug { it } },
 )
 

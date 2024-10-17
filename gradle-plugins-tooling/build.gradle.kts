@@ -28,5 +28,9 @@ gradlePlugin {
             id = "com.v7v.android.application"
             implementationClass = "com.v7v.gradle.plugins.tooling.AndroidApplicationPlugin"
         }
+        register("setupDevPropertiesPlugin") {
+            id = "com.v7v.setup.dev.properties"
+            implementationClass = "com.v7v.gradle.plugins.tooling.SetupDevPropertiesPlugin"
+        }
     }
 }
