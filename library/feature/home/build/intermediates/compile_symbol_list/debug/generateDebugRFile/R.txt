@@ -1,7 +1,0 @@
-int drawable images 0x0
-int drawable placeholder 0x0
-int string characters_tab 0x0
-int string comics_tab 0x0
-int string error_loading_comics 0x0
-int string search_characters_title 0x0
-int string search_comics_title 0x0
