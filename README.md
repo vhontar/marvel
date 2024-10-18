@@ -65,7 +65,7 @@ The app is divided into several modules for better scalability and maintainabili
 - 
 ## Custom Gradle Plugins
 
-The project uses **custom Gradle plugins** to manage common tasks and ensure modularization. You can find these plugins under the `buildSrc` directory. These plugins handle tasks like managing dependencies, automating module setup, and ensuring consistency across different project modules.
+The project uses **custom Gradle plugins** to manage common tasks and ensure modularization. You can find these plugins under the `gradle-plugins-tooling` module. These plugins handle tasks like managing dependencies, automating module setup, and ensuring consistency across different project modules.
 
 ## Future Enhancements
 
