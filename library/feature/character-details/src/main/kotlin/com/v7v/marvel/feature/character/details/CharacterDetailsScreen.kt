@@ -33,6 +33,8 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.v7v.feature.character.details.R
 import com.v7v.marvel.domain.models.Character
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -188,7 +190,26 @@ fun ComicListItem(comic: Character.Comic) {
 private fun CharacterDetailsPreview() {
     CharacterDetailsScreen(
         characterId = 1,
-        viewModel = MockCharacterDetailsViewModel(),
+        viewModel = object : CharacterDetailsViewModel() {
+            override val state: StateFlow<State> = MutableStateFlow(
+                State.Success(
+                    character = Character(
+                        id = 1,
+                        name = "SpiderMan",
+                        thumbnailUrl = "test.com",
+                        comics = listOf(
+                            Character.Comic(name = "Spider Boy"),
+                            Character.Comic(name = "Spider Boy 2"),
+                            Character.Comic(name = "Spider Boy 3"),
+                            Character.Comic(name = "Spider Boy 4"),
+                        ),
+                    ),
+                ),
+            )
+
+            override fun load(characterId: Int) {
+            }
+        },
         onBackPressed = {},
     )
 }
