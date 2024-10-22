@@ -1,14 +1,6 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-
-    dependencies {
-        classpath(libs.gradlePlugins.android)
-        classpath(libs.gradlePlugins.kotlin)
-    }
+plugins {
+    id("com.v7v.android.library") apply false
+    id("com.v7v.module.graph.assert")
 }
 
 allprojects {

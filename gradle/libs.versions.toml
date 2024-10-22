@@ -30,6 +30,7 @@ gradlePlugins-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", v
 gradlePlugins-ksp = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 gradlePlugins-kotlinComposeCompiler = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 gradlePlugins-ktlint = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "ktlint" }
+gradlePlugins-moduleGraphAssert = { module = "com.jraska.module.graph.assertion:plugin", version = "2.7.1" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
