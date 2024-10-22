@@ -1,0 +1,39 @@
+name: Check Pull Request
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  LintTest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Filter Paths
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            app:
+              - 'library/**'
+            gradle:
+              - 'gradle/**'
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Check library
+        if: steps.filter.outputs.app == 'true' || steps.filter.outputs.gradle == 'true'
+        working-directory: ./library
+        run: ./gradlew quickLint quickTest
