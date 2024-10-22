@@ -238,12 +238,12 @@ private fun <T> ListItem(item: T, text: (T) -> String, imageUrl: (T) -> String, 
     }
 }
 
-@Preview(name = "HomeContent", group = "MarvelGroup")
-@Composable
-private fun HomeContentPreview() {
-    HomeScreen(
-        viewModel = MockHomeViewModel(),
-        onComicItemClicked = {},
-        onCharacterItemClicked = {},
-    )
-}
+//@Preview(name = "HomeContent", group = "MarvelGroup")
+//@Composable
+//private fun HomeContentPreview() {
+//    HomeScreen(
+//        viewModel = MockHomeViewModel(),
+//        onComicItemClicked = {},
+//        onCharacterItemClicked = {},
+//    )
+//}

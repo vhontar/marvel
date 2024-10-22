@@ -3,10 +3,8 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":logger"))
-
-    implementation(libs.textref)
-
+    implementation(libs.kotlinx.coroutines.core)
     implementation(libs.paging.common)
-    implementation(libs.paging.runtime)
+
+    api(libs.textref)
 }

@@ -7,6 +7,7 @@ import org.gradle.api.Project
 internal class AndroidLibraryPlugin: Plugin<Project> {
     override fun apply(target: Project) = with(target) {
         pluginManager.apply("com.android.library")
+        pluginManager.apply("com.autonomousapps.dependency-analysis")
         setupKotlin()
         extensions.configure<LibraryExtension>("android") { ext ->
             with(ext) {

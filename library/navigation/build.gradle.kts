@@ -8,7 +8,12 @@ dependencies {
     implementation(project(":feature:character-details"))
     implementation(project(":feature:comic-details"))
 
+    api(libs.kotlinx.serialization)
+
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
-    implementation(libs.androidx.navigation)
+    implementation(libs.androidx.compose.animation)
+    implementation(libs.androidx.navigation.common)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.runtime)
 }

@@ -24,18 +24,27 @@ dependencies {
     implementation(project(":logger"))
     implementation(project(":domain"))
 
-    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.annotation)
+    implementation(libs.kotlinx.coroutines.core)
+    api(libs.kotlinx.serialization)
+
     implementation(libs.ktor.client.core)
+    implementation(libs.ktor.io)
+    implementation(libs.ktor.http)
+    implementation(libs.ktor.serialization)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.utils)
     implementation(libs.ktor.client.okhttp)
     implementation(libs.ktor.client.negotiation)
-    implementation(libs.ktor.serialization)
-    implementation(libs.koin)
 
-    implementation(libs.room.runtime)
+    api(libs.koin.core)
+
+    implementation(libs.room.common)
     implementation(libs.room.ktx)
     implementation(libs.room.paging)
+    api(libs.room.runtime)
     ksp(libs.room.compiler)
 
-    implementation(libs.paging.common)
-    implementation(libs.paging.runtime)
+    api(libs.paging.common)
+    api(libs.paging.common.android)
 }

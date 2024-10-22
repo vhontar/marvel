@@ -177,12 +177,12 @@ fun CharacterListItem(character: Comic.Character) {
     }
 }
 
-@Preview
-@Composable
-private fun ComicDetailsPreview() {
-    ComicDetailsScreen(
-        comicId = 1,
-        viewModel = MockComicDetailsViewModel(),
-        onBackPressed = {},
-    )
-}
+//@Preview
+//@Composable
+//private fun ComicDetailsPreview() {
+//    ComicDetailsScreen(
+//        comicId = 1,
+//        viewModel = MockComicDetailsViewModel(),
+//        onBackPressed = {},
+//    )
+//}

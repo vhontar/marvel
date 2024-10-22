@@ -18,6 +18,7 @@ dependencies {
     implementation(libs.gradlePlugins.ktlint)
     implementation(libs.kotlinx.serialization)
     implementation(libs.gradlePlugins.moduleGraphAssert)
+    implementation(libs.gradlePlugins.dependencyAnalysis)
 }
 
 gradlePlugin {
@@ -37,6 +38,10 @@ gradlePlugin {
         register("moduleGraphAssertPlugin") {
             id = "com.v7v.module.graph.assert"
             implementationClass = "com.v7v.gradle.plugins.tooling.ModuleGraphAssertPlugin"
+        }
+        register("dependencyAnalysisPlugin") {
+            id = "com.v7v.dependency.analysis"
+            implementationClass = "com.v7v.gradle.plugins.tooling.DependencyAnalysisPlugin"
         }
     }
 }
