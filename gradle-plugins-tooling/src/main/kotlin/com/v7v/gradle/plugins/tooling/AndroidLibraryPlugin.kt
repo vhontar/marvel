@@ -24,5 +24,7 @@ internal class AndroidLibraryPlugin: Plugin<Project> {
                 setupCompose(buildFeatures, composeOptions)
             }
         }
+        setupLinting()
+        setupTesting()
     }
 }
