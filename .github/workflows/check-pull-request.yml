@@ -36,4 +36,4 @@ jobs:
       - name: Check library
         if: steps.filter.outputs.app == 'true' || steps.filter.outputs.gradle == 'true'
         working-directory: ./library
-        run: ./gradlew quickLint quickTest
+        run: ./gradlew quickLint quickTest assertModuleGraph

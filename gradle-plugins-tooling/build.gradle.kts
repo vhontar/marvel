@@ -17,6 +17,7 @@ dependencies {
     implementation(libs.gradlePlugins.kotlinComposeCompiler)
     implementation(libs.gradlePlugins.ktlint)
     implementation(libs.kotlinx.serialization)
+    implementation(libs.gradlePlugins.moduleGraphAssert)
 }
 
 gradlePlugin {
@@ -32,6 +33,10 @@ gradlePlugin {
         register("setupDevPropertiesPlugin") {
             id = "com.v7v.setup.dev.properties"
             implementationClass = "com.v7v.gradle.plugins.tooling.SetupDevPropertiesPlugin"
+        }
+        register("moduleGraphAssertPlugin") {
+            id = "com.v7v.module.graph.assert"
+            implementationClass = "com.v7v.gradle.plugins.tooling.ModuleGraphAssertPlugin"
         }
     }
 }
