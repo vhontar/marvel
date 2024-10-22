@@ -4,5 +4,5 @@ data class FetchComicsQueries(
     val titleStartsWith: String?,
     val limit: Int,
     val offset: Int,
-    val format: String = "comic"
+    val format: String = "comic",
 )

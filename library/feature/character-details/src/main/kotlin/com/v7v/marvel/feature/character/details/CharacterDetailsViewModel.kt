@@ -43,4 +43,3 @@ sealed interface State {
     data class Error(val message: TextRef) : State
     data class Success(val character: Character) : State
 }
-

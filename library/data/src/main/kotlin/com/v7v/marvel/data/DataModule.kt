@@ -40,7 +40,7 @@ private fun provideDatabase(context: Context): MarvelDatabase {
     return Room.databaseBuilder(
         context = context.applicationContext,
         klass = MarvelDatabase::class.java,
-        name = "superhero_database"
+        name = "superhero_database",
     ).build()
 }
 

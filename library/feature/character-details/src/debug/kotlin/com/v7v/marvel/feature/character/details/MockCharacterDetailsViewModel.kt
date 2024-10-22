@@ -16,9 +16,9 @@ internal class MockCharacterDetailsViewModel : CharacterDetailsViewModel() {
                     Character.Comic(name = "Spider Boy 2"),
                     Character.Comic(name = "Spider Boy 3"),
                     Character.Comic(name = "Spider Boy 4"),
-                )
-            )
-        )
+                ),
+            ),
+        ),
     )
 
     override fun load(characterId: Int) {

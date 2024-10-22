@@ -4,7 +4,6 @@ import com.v7v.marvel.data.remote.internal.plugins.HttpLoggingPlugin
 import com.v7v.marvel.data.remote.internal.utils.createJson
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
-import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.cache.HttpCache
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -18,6 +17,7 @@ private const val TIMEOUT_MILLISECONDS = 20 * 1000L
 
 internal fun httpClient(): HttpClient = HttpClient(OkHttp)
 
+@Suppress("FunctionName")
 @OptIn(ExperimentalStdlibApi::class)
 internal fun MarvelHttpClient(
     baseUrl: String,

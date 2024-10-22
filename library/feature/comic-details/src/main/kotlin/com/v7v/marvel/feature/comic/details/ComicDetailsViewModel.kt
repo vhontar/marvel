@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ioki.textref.TextRef
 import com.v7v.marvel.domain.Result
-import com.v7v.marvel.domain.models.Character
 import com.v7v.marvel.domain.models.Comic
 import com.v7v.marvel.domain.repositories.MarvelComicsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -44,4 +43,3 @@ sealed interface State {
     data class Error(val message: TextRef) : State
     data class Success(val comic: Comic) : State
 }
-

@@ -12,7 +12,7 @@ data class ApiCharacterResponse(
     @Serializable
     data class Thumbnail(
         val path: String,
-        val extension: String
+        val extension: String,
     )
 
     @Serializable

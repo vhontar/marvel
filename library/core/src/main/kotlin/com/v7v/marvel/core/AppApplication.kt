@@ -34,7 +34,7 @@ object AppApplication {
                     println("$tag: $message")
                     println("$tag: $throwable")
                 }
-            }
+            },
         )
         startKoin {
             androidLogger()

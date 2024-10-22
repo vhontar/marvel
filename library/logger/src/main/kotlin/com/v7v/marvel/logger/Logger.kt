@@ -10,36 +10,35 @@ inline fun <T : Any> T.logDebug(messageBlock: MessageBlock) {
     }
 }
 
-inline fun <T: Any> T.logInfo(messageBlock: MessageBlock) {
+inline fun <T : Any> T.logInfo(messageBlock: MessageBlock) {
     if (Logger.isLoggable(Severity.INFO)) {
         Logger.logInfo(this, messageBlock())
     }
 }
 
-inline fun <T: Any> T.logWarn(messageBlock: MessageBlock) {
+inline fun <T : Any> T.logWarn(messageBlock: MessageBlock) {
     if (Logger.isLoggable(Severity.WARN)) {
         Logger.logWarn(this, messageBlock(), null)
     }
 }
 
-inline fun <T: Any> T.logWarn(throwable: Throwable, messageBlock: MessageBlock) {
+inline fun <T : Any> T.logWarn(throwable: Throwable, messageBlock: MessageBlock) {
     if (Logger.isLoggable(Severity.WARN)) {
         Logger.logWarn(this, messageBlock(), throwable)
     }
 }
 
-inline fun <T: Any> T.logError(messageBlock: MessageBlock) {
+inline fun <T : Any> T.logError(messageBlock: MessageBlock) {
     if (Logger.isLoggable(Severity.ERROR)) {
         Logger.logError(this, messageBlock(), null)
     }
 }
 
-inline fun <T: Any> T.logError(throwable: Throwable, messageBlock: MessageBlock) {
+inline fun <T : Any> T.logError(throwable: Throwable, messageBlock: MessageBlock) {
     if (Logger.isLoggable(Severity.ERROR)) {
         Logger.logError(this, messageBlock(), throwable)
     }
 }
-
 
 data object Logger {
 
