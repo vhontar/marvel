@@ -3,8 +3,6 @@ package com.v7v.marvel.data.repositories
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.v7v.marvel.data.local.dao.CharacterDao
-import com.v7v.marvel.data.local.entities.CharacterEntity
 import com.v7v.marvel.data.paging.CharacterPagingSource
 import com.v7v.marvel.data.remote.MarvelCharactersService
 import com.v7v.marvel.data.remote.models.ApiCharacterResponse
@@ -22,9 +20,7 @@ internal class MarvelCharactersRepositoryImpl(
     private val service: MarvelCharactersService,
 ) : MarvelCharactersRepository {
 
-    override suspend fun getCharactersPaged(
-        nameStartsWith: String?,
-    ): Flow<PagingData<Character>> = Pager(
+    override suspend fun getCharactersPaged(nameStartsWith: String?): Flow<PagingData<Character>> = Pager(
         config = PagingConfig(
             pageSize = 20,
             enablePlaceholders = false,

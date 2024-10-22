@@ -14,22 +14,22 @@ internal class MockHomeViewModel : HomeViewModel() {
                     id = 1,
                     name = "Mock Character 1",
                     thumbnailUrl = "https://example.com/mock1.jpg",
-                    comics = listOf()
+                    comics = listOf(),
                 ),
                 Character(
                     id = 2,
                     name = "Mock Character 2",
                     thumbnailUrl = "https://example.com/mock2.jpg",
-                    comics = listOf()
+                    comics = listOf(),
                 ),
                 Character(
                     id = 3,
                     name = "Mock Character 3",
                     thumbnailUrl = "https://example.com/mock3.jpg",
-                    comics = listOf()
-                )
-            )
-        )
+                    comics = listOf(),
+                ),
+            ),
+        ),
     )
 
     override val comicsPagedFlow: Flow<PagingData<Comic>> = flowOf(
@@ -52,9 +52,9 @@ internal class MockHomeViewModel : HomeViewModel() {
                     title = "Mock Comic 3",
                     thumbnailUrl = "https://example.com/mock3.jpg",
                     characters = listOf(),
-                )
-            )
-        )
+                ),
+            ),
+        ),
     )
 
     override val currentTabIndex: Flow<Int> = flowOf(0)

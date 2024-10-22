@@ -9,6 +9,9 @@ import com.v7v.marvel.data.remote.models.ApiComicResponse
 import com.v7v.marvel.data.remote.models.ApiErrorBody
 import com.v7v.marvel.data.remote.models.FetchCharactersQueries
 import com.v7v.marvel.data.remote.models.FetchComicsQueries
+import com.v7v.marvel.data.remote.result.Result
+import com.v7v.marvel.logger.logError
+import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.isSuccess
 import java.net.ConnectException
@@ -17,9 +20,6 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.nio.channels.ClosedChannelException
 import kotlin.coroutines.cancellation.CancellationException
-import com.v7v.marvel.data.remote.result.Result
-import com.v7v.marvel.logger.logError
-import io.ktor.client.call.body
 
 fun MarvelService(
     baseUrl: String,
@@ -35,19 +35,13 @@ fun MarvelService(
 interface MarvelService : MarvelCharactersService, MarvelComicsService
 
 interface MarvelCharactersService {
-    suspend fun fetchCharacters(
-        queries: FetchCharactersQueries,
-    ): Result<ApiBody.ApiData<ApiCharacterResponse>>
+    suspend fun fetchCharacters(queries: FetchCharactersQueries): Result<ApiBody.ApiData<ApiCharacterResponse>>
 
-    suspend fun fetchCharacter(
-        characterId: Int,
-    ): Result<ApiBody.ApiData<ApiCharacterResponse>>
+    suspend fun fetchCharacter(characterId: Int): Result<ApiBody.ApiData<ApiCharacterResponse>>
 }
 
 interface MarvelComicsService {
-    suspend fun fetchComics(
-        queries: FetchComicsQueries,
-    ): Result<ApiBody.ApiData<ApiComicResponse>>
+    suspend fun fetchComics(queries: FetchComicsQueries): Result<ApiBody.ApiData<ApiComicResponse>>
 
     suspend fun fetchComic(comicId: Int): Result<ApiBody.ApiData<ApiComicResponse>>
 }
@@ -63,16 +57,12 @@ internal class DefaultMarvelService(
             fetchCharacters(queries)
         }
 
-    override suspend fun fetchCharacter(
-        characterId: Int,
-    ): Result<ApiBody.ApiData<ApiCharacterResponse>> =
+    override suspend fun fetchCharacter(characterId: Int): Result<ApiBody.ApiData<ApiCharacterResponse>> =
         apiCall<ApiBody<ApiCharacterResponse>, ApiBody.ApiData<ApiCharacterResponse>> {
             fetchCharacter(characterId)
         }
 
-    override suspend fun fetchComics(
-        queries: FetchComicsQueries,
-    ): Result<ApiBody.ApiData<ApiComicResponse>> =
+    override suspend fun fetchComics(queries: FetchComicsQueries): Result<ApiBody.ApiData<ApiComicResponse>> =
         apiCall<ApiBody<ApiComicResponse>, ApiBody.ApiData<ApiComicResponse>> {
             fetchComics(queries)
         }
@@ -121,22 +111,20 @@ internal suspend inline fun <reified R, reified T> mapSuccess(successfulResponse
     return Result.Success(data) as Result.Success<T>
 }
 
-internal suspend fun mapApiError(
-    failedResponse: HttpResponse,
-): Result.Error.Api {
+internal suspend fun mapApiError(failedResponse: HttpResponse): Result.Error.Api {
     val apiErrorBody = failedResponse.body<ApiErrorBody?>()
     val code = failedResponse.status.value
     return Result.Error.Api(
         statusCode = code,
         code = apiErrorBody?.code ?: "",
-        message = apiErrorBody?.message ?: ""
+        message = apiErrorBody?.message ?: "",
     )
 }
 
 internal val Throwable.isConnectivityError: Boolean
     get() =
         this is SocketException ||
-                this is SocketTimeoutException ||
-                this is UnknownHostException ||
-                this is ClosedChannelException ||
-                this is ConnectException
+            this is SocketTimeoutException ||
+            this is UnknownHostException ||
+            this is ClosedChannelException ||
+            this is ConnectException

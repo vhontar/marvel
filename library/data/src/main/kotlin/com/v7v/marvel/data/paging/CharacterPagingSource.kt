@@ -17,7 +17,7 @@ internal class CharacterPagingSource(
             val offset = params.key ?: 0
 
             val response = service.fetchCharacters(
-                FetchCharactersQueries(nameStartsWith, limit = params.loadSize, offset = offset)
+                FetchCharactersQueries(nameStartsWith, limit = params.loadSize, offset = offset),
             )
 
             val result = response.mapSuccessOrNullable()
@@ -26,7 +26,7 @@ internal class CharacterPagingSource(
             LoadResult.Page(
                 data = characters,
                 prevKey = if (offset == 0) null else offset - params.loadSize,
-                nextKey = if (characters.isEmpty()) null else offset + params.loadSize
+                nextKey = if (characters.isEmpty()) null else offset + params.loadSize,
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

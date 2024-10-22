@@ -13,16 +13,16 @@ import com.v7v.marvel.feature.home.HomeScreen
 internal fun NavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = HomeDestination
+        startDestination = HomeDestination,
     ) {
         composable<HomeDestination> {
             HomeScreen(
                 onComicItemClicked = { comicId -> navController.navigate(ComicDetailsDestination(comicId)) },
                 onCharacterItemClicked = { characterId ->
                     navController.navigate(
-                        CharacterDetailsDestination(characterId)
+                        CharacterDetailsDestination(characterId),
                     )
-                }
+                },
             )
         }
         composable<CharacterDetailsDestination> { navBackStackEntry ->

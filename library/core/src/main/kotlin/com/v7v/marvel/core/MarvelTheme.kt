@@ -14,20 +14,20 @@ import androidx.compose.ui.platform.LocalContext
 private val DarkColorScheme = darkColorScheme(
     primary = Color(0xFFFFFFFF),
     secondary = Color(0xFFFF0000),
-    tertiary = Color(0xFFD0BCFF)
+    tertiary = Color(0xFFD0BCFF),
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Color(0xFFFFFFFF),
     secondary = Color(0xFFFF0000),
-    tertiary = Color(0xFFD0BCFF)
+    tertiary = Color(0xFFD0BCFF),
 )
 
 @Composable
 fun MarvelTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
@@ -41,6 +41,6 @@ fun MarvelTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        content = content
+        content = content,
     )
 }

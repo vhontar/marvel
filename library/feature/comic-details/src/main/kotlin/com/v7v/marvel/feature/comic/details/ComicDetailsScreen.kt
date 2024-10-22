@@ -1,6 +1,5 @@
 package com.v7v.marvel.feature.comic.details
 
-
 import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -35,11 +34,7 @@ import com.v7v.marvel.domain.models.Comic
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ComicDetailsScreen(
-    comicId: Int,
-    viewModel: ComicDetailsViewModel = koinViewModel(),
-    onBackPressed: () -> Unit,
-) {
+fun ComicDetailsScreen(comicId: Int, viewModel: ComicDetailsViewModel = koinViewModel(), onBackPressed: () -> Unit) {
     val context = LocalContext.current
     val state = viewModel.state.collectAsStateWithLifecycle()
     when (val result = state.value) {
@@ -47,14 +42,14 @@ fun ComicDetailsScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) { Text(text = "An error occurred: ${result.message}") }
 
         State.Loading -> Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) { CircularProgressIndicator() }
 
         is State.Success -> ComicDetailsContent(
@@ -83,12 +78,12 @@ fun ComicDetailsContent(
     onShareClick: (Comic) -> Unit,
 ) {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(250.dp)
+                .height(250.dp),
         ) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
@@ -106,7 +101,7 @@ fun ComicDetailsContent(
                     .fillMaxWidth()
                     .padding(16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.Top
+                verticalAlignment = Alignment.Top,
             ) {
                 IconButton(onClick = onBackPressed) {
                     Icon(
@@ -142,19 +137,19 @@ fun ComicDetailsContent(
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(16.dp),
         )
 
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(16.dp),
         ) {
             item {
                 Text(
                     text = "Characters",
                     style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier.padding(bottom = 8.dp)
+                    modifier = Modifier.padding(bottom = 8.dp),
                 )
             }
             items(comic.characters.size) { index ->
@@ -172,12 +167,12 @@ fun CharacterListItem(character: Comic.Character) {
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = character.name,
             style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
     }
 }

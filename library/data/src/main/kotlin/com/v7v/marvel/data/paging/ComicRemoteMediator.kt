@@ -22,10 +22,7 @@ internal class ComicRemoteMediator(
     private val titleStartsWith: String?,
 ) : RemoteMediator<Int, ComicEntity>() {
 
-    override suspend fun load(
-        loadType: LoadType,
-        state: PagingState<Int, ComicEntity>,
-    ): MediatorResult {
+    override suspend fun load(loadType: LoadType, state: PagingState<Int, ComicEntity>): MediatorResult {
         return try {
             val isCacheExpired = isCacheExpired()
 
@@ -47,8 +44,8 @@ internal class ComicRemoteMediator(
                 queries = FetchComicsQueries(
                     titleStartsWith = titleStartsWith,
                     limit = limit,
-                    offset = offset
-                )
+                    offset = offset,
+                ),
             )
 
             if (loadType == LoadType.REFRESH) {
@@ -69,7 +66,8 @@ internal class ComicRemoteMediator(
         val latestTimestamp = dao.getLatestUpdatedTimestamp()
         val currentTime = System.currentTimeMillis()
 
-        return latestTimestamp == null || TimeUnit.MILLISECONDS.toMinutes(currentTime - latestTimestamp) > CACHE_EXPIRATION_MINUTES
+        return latestTimestamp == null ||
+            TimeUnit.MILLISECONDS.toMinutes(currentTime - latestTimestamp) > CACHE_EXPIRATION_MINUTES
     }
 }
 

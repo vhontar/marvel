@@ -81,7 +81,7 @@ fun HomeScreen(
                         Tab(
                             selected = selectedTabIndex.value == index,
                             onClick = { viewModel.changeCurrentTabIndex(index) },
-                            text = { Text(text = title) }
+                            text = { Text(text = title) },
                         )
                     }
                 }
@@ -117,7 +117,7 @@ fun HomeScreen(
                     onSearchQuerySubmitted = { query -> viewModel.searchCharactersByName(query) },
                 )
             }
-        }
+        },
     )
 }
 
@@ -143,7 +143,7 @@ private fun <T : Any> TabContent(
             onValueChange = { newValue -> searchQuery = newValue },
             textStyle = LocalTextStyle.current.copy(color = Color.Red),
             keyboardOptions = KeyboardOptions.Default.copy(
-                imeAction = ImeAction.Search
+                imeAction = ImeAction.Search,
             ),
             keyboardActions = KeyboardActions(
                 onSearch = {
@@ -168,16 +168,16 @@ private fun <T : Any> TabContent(
                 content = {
                     Text(
                         text = stringResource(id = R.string.error_loading_comics),
-                        color = Color.Red
+                        color = Color.Red,
                     )
-                }
+                },
             )
 
             else -> LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 items(items.itemCount) {
                     items[it]?.let { item ->
@@ -191,7 +191,7 @@ private fun <T : Any> TabContent(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(16.dp),
-                            contentAlignment = Alignment.Center
+                            contentAlignment = Alignment.Center,
                         ) {
                             CircularProgressIndicator()
                         }
@@ -203,17 +203,12 @@ private fun <T : Any> TabContent(
 }
 
 @Composable
-private fun <T> ListItem(
-    item: T,
-    text: (T) -> String,
-    imageUrl: (T) -> String,
-    onItemClicked: (T) -> Unit,
-) {
+private fun <T> ListItem(item: T, text: (T) -> String, imageUrl: (T) -> String, onItemClicked: (T) -> Unit) {
     Card(
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(4.dp),
         modifier = Modifier.fillMaxWidth(),
-        onClick = { onItemClicked(item) }
+        onClick = { onItemClicked(item) },
     ) {
         Column {
             AsyncImage(

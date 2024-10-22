@@ -10,4 +10,3 @@ data class CharacterDetailsDestination(val characterId: Int)
 
 @Serializable
 data class ComicDetailsDestination(val comicId: Int)
-

@@ -7,8 +7,16 @@ plugins {
 android {
     defaultConfig {
         buildConfigField("String", "BASE_URL", "\"${devProperties.getByNameOrDefault(project, "base_url")}\"")
-        buildConfigField("String", "PRIVATE_API_KEY", "\"${devProperties.getByNameOrDefault(project, "marvel_private_key")}\"")
-        buildConfigField("String", "PUBLIC_API_KEY", "\"${devProperties.getByNameOrDefault(project, "marvel_api_key")}\"")
+        buildConfigField(
+            "String",
+            "PRIVATE_API_KEY",
+            "\"${devProperties.getByNameOrDefault(project, "marvel_private_key")}\"",
+        )
+        buildConfigField(
+            "String",
+            "PUBLIC_API_KEY",
+            "\"${devProperties.getByNameOrDefault(project, "marvel_api_key")}\"",
+        )
     }
 }
 

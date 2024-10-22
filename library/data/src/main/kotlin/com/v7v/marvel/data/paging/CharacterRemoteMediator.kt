@@ -22,10 +22,7 @@ internal class CharacterRemoteMediator(
     private val nameStartsWith: String?,
 ) : RemoteMediator<Int, CharacterEntity>() {
 
-    override suspend fun load(
-        loadType: LoadType,
-        state: PagingState<Int, CharacterEntity>,
-    ): MediatorResult {
+    override suspend fun load(loadType: LoadType, state: PagingState<Int, CharacterEntity>): MediatorResult {
         return try {
             val isCacheExpired = isCacheExpired()
 
@@ -47,8 +44,8 @@ internal class CharacterRemoteMediator(
                 queries = FetchCharactersQueries(
                     nameStartsWith = nameStartsWith,
                     limit = limit,
-                    offset = offset
-                )
+                    offset = offset,
+                ),
             )
 
             if (loadType == LoadType.REFRESH) {
@@ -69,7 +66,8 @@ internal class CharacterRemoteMediator(
         val latestTimestamp = dao.getLatestUpdatedTimestamp()
         val currentTime = System.currentTimeMillis()
 
-        return latestTimestamp == null || TimeUnit.MILLISECONDS.toMinutes(currentTime - latestTimestamp) > CACHE_EXPIRATION_MINUTES
+        return latestTimestamp == null ||
+            TimeUnit.MILLISECONDS.toMinutes(currentTime - latestTimestamp) > CACHE_EXPIRATION_MINUTES
     }
 }
 

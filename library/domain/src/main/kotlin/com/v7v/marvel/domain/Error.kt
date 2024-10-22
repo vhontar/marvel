@@ -10,8 +10,7 @@ sealed class Error(val message: TextRef) {
     companion object {
         fun connectivityFailure(): Result.Failure<Connectivity> = Result.Failure(Connectivity)
         fun unknownFailure(): Result.Failure<Unknown> = Result.Failure(Unknown)
-        fun knownFailure(message: String): Result.Failure<Known> =
-            Result.Failure(Known(TextRef.string(message)))
+        fun knownFailure(message: String): Result.Failure<Known> = Result.Failure(Known(TextRef.string(message)))
 
         fun knownFailure(message: TextRef): Result.Failure<Known> = Result.Failure(Known(message))
     }
