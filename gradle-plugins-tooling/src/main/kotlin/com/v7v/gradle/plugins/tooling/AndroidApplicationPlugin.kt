@@ -31,5 +31,7 @@ internal class AndroidApplicationPlugin : Plugin<Project> {
                 packaging.resources.excludes.add("META-INF/DEPENDENCIES")
             }
         }
+        setupLinting()
+        setupTesting()
     }
 }

@@ -17,6 +17,7 @@ paging = "3.3.2"
 coil = "2.3.0"
 viewmodel = "2.8.6"
 navigation = "2.8.2"
+ktlint = "12.1.1"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -28,6 +29,7 @@ gradlePlugins-android = "com.android.tools.build:gradle:8.7.1"
 gradlePlugins-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradlePlugins-ksp = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 gradlePlugins-kotlinComposeCompiler = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+gradlePlugins-ktlint = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "ktlint" }
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
